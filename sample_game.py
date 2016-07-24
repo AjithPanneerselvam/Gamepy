@@ -7,7 +7,13 @@ from pygame.locals import *
 #Defining some basic colors
 black = 0,
 """ 
+
+import os, sys
 import pygame
+from pygame.locals import *
+
+if not pygame.font: print 'Warning, fonts disabled'
+if not pygame.mixer: print 'Warning, sound disabled'
 
 class PygView(object):
 
@@ -28,6 +34,23 @@ class PygView(object):
         self.font = pygame.font.SysFont('mono', 20, bold=True)
 
 
+    def load_image(self, name, colorkey=None):
+	 	fullname = os.path.join('data\images', name)
+		try:
+   	 		image = pygame.image.load(fullname)
+		except pygame.error, message:
+			print 'Cannot load image:', name
+    		raise SystemExit, message
+		image = image.convert()
+
+		if colorkey is not None:
+			if colorkey is -1:
+				colorkey = image.get_at((0,0))
+        	image.set_colorkey(colorkey, RLEACCEL)
+
+		return image, image.get_rect()
+
+
     def run(self):
         """The mainloop
         """
@@ -42,8 +65,9 @@ class PygView(object):
 
             milliseconds = self.clock.tick(self.fps)
             self.playtime += milliseconds / 1000.0
-            self.draw_text("FPS: {:6.3}{}PLAYTIME: {:6.3} SECONDS".format(
-                           self.clock.get_fps(), " "*5, self.playtime))
+            #self.draw_text("FPS: {:6.3}{}PLAYTIME: {:6.3} SECONDS".format(
+             #              self.clock.get_fps(), " "*5, self.playtime))
+            self.load_image('tim.jpg')
 
             pygame.display.flip()
             self.screen.blit(self.background, (0, 0))
@@ -58,6 +82,8 @@ class PygView(object):
         surface = self.font.render(text, True, (0, 255, 0))
         # // makes integer division in python3
         self.screen.blit(surface, ((self.width - fw) // 2, (self.height - fh) // 2))
+
+ 	
 
 ####
 
