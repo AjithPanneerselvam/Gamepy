@@ -1,7 +1,8 @@
 import pygame
+
 class Game(object):
  def run(self,screen):
-  image=pygame.image.load(r"C:/Python27/include/k.png")
+  image=pygame.image.load(r"k.png")
   image_x=10
   image_y=10
   clock=pygame.time.Clock()
