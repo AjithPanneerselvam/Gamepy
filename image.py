@@ -4,8 +4,8 @@ import pygame
 pygame.init()
 
 
-display_width = 1600
-display_height = 800
+display_width = 640
+display_height = 400
 
 gameDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption('Timon')
@@ -15,7 +15,7 @@ white = (255,255,255)
 
 clock = pygame.time.Clock()
 crashed = False
-carImg = pygame.image.load('tim.jpg')
+carImg = pygame.image.load('images/tim.jpg')
 
 def car(x,y):
     gameDisplay.blit(carImg, (x,y))
@@ -31,7 +31,7 @@ while not crashed:
     gameDisplay.fill(white)
     car(x,y)
 
-        
+
     pygame.display.update()
     clock.tick(60)
 

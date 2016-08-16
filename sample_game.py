@@ -6,7 +6,7 @@ from pygame.locals import *
 
 #Defining some basic colors
 black = 0,
-""" 
+"""
 
 import os, sys
 import pygame
@@ -22,7 +22,7 @@ class PygView(object):
         """Initialize pygame, window, background, font,...
         """
         pygame.init()
-        pygame.display.set_caption("Press ESC to quit")
+        pygame.display.set_caption("Glide")
         self.width = width
         self.height = height
         #self.height = width // 4
@@ -35,7 +35,7 @@ class PygView(object):
 
 
     def load_image(self, name, colorkey=None):
-	 	fullname = os.path.join('data\images', name)
+	 	fullname = os.path.join('images/', name)
 		try:
    	 		image = pygame.image.load(fullname)
 		except pygame.error, message:
@@ -83,7 +83,7 @@ class PygView(object):
         # // makes integer division in python3
         self.screen.blit(surface, ((self.width - fw) // 2, (self.height - fh) // 2))
 
- 	
+
 
 ####
 
